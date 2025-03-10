@@ -19,7 +19,6 @@ if(total_page != null || total_page.equals("")){
 }
 //get page번호를 가져오는 방식
 String pno = request.getParameter("pageno");
-out.print(pno);
 if(pno == null || pno.equals(1)){ // 최초 접근시 페이지 번호가 없음 or 1번 페이지 클릭
 	pno = "1";
 }
