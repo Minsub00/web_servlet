@@ -20,7 +20,12 @@ public class m_noticelist {
 	int ea = 3; // 페이지 당 게시물 3개출력
 			
 	public m_noticelist(int s) {
-		this.spage = s; // sql 쿼리문의 limit를 사용하기 위함
+		if(s > 0) { // 1번 페이지 외의 번호일경우
+			// (페이지 번호 - 1) * 페이지 당 출력할 갯수
+			this.spage = (s - 1) * ea;
+		} else {
+			this.spage = s; // sql 쿼리문의 limit를 사용하기 위함
+		}
 	}
 	
 	public ArrayList<ArrayList<String>> db_data(){

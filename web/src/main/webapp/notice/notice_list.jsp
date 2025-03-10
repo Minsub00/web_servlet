@@ -17,6 +17,12 @@ if(total_page != null || total_page.equals("")){
 	float pg2 = Integer.parseInt(total_page) / 3f;
 	pg = (int)Math.ceil(pg2);
 }
+//get page번호를 가져오는 방식
+String pno = request.getParameter("pageno");
+out.print(pno);
+if(pno == null || pno.equals(1)){ // 최초 접근시 페이지 번호가 없음 or 1번 페이지 클릭
+	pno = "1";
+}
 %>
 <!DOCTYPE html>
 <html>
@@ -39,7 +45,9 @@ if(total_page != null || total_page.equals("")){
 <tbody>
 <%
 	int f;
-	int total = notice.size(); // 리스트 출력 번호를 총 데이터 갯수로 처리
+
+	// 총 데이터 갯수 - ((페이지 번호 - 1) * 페이지 당 출력 갯수)
+	int total = Integer.parseInt(total_page) - ((Integer.parseInt(pno) - 1) * 3); // 리스트 출력 번호를 총 데이터 갯수로 처리
 	for(f=0; f<notice.size(); f++){
 %>
 	<tr height="30" align="center">
