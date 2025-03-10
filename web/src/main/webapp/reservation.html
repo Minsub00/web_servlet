@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>영화 예매 시스템</title>
+</head>
+<body>
+<form id="frm" method="post" action="./reservationok.do">
+<p>영화 예매 시스템</p>
+고객명 : <input type="text" name="username"><br>
+연락처 : <input type="text" name="usertel"> "-"없이 숫자만 입력<br>
+영화선택 :
+<ul>
+<li><input type="radio" value="히트맨" name="movie">히트맨</li>
+<li><input type="radio" value="써니데이" name="movie">써니데이</li>
+<li><input type="radio" value="브루탈리스트" name="movie">브루탈리스트</li>
+<li><input type="radio" value="히어" name="movie">히어</li>
+<li><input type="radio" value="하얼빈" name="movie">하얼빈</li>
+</ul>
+예매일자 : <input type="date" name="reservationDate">
+<input type="button" value="예매하기" onclick="next()">
+</form>
+</body>
+<script src="./reservation.js"></script>
+</html>

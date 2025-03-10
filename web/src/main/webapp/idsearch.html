@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>아이디 찾기</title>
+</head>
+<body>
+<!-- required : submit 전용(HTML5) 필수로 값을 받는 속성-->
+<!-- pattern : 정규식 코드 형태로 규칙적인 데이터를 입력하도록 설정하는 속성 -->
+<!-- {},(),[] \d(숫자), \b(단어), \D(문자) 입력값의 범위를 설정할 수 있습니다. -->
+<form id="frm" method="post" action="./idsearch.do">
+고객명 : <input type="text" name="client_name" required><br>
+연락처 : <input type="tel" pattern="(010|011)\d{3,4}\d{4}" name="client_number" maxlength="11" required> "-" 미포함 숫자만 입력하세요 <br>
+이메일 : <input type="email" name="client_email" pattern="@" required><br>
+<input type="submit" value="아이디 찾기">
+</form>
+</body>
+<script>
+	function ok(){
+		if(frm.client_name.value == ""){
+			alert("고객명을 입력하세요.");
+		}
+		else if(frm.client_number.value == ""){
+			alert("연락처를 입력하세요.");
+		}
+		else if(frm.client_email.value == ""){
+			alert("이메일을 입력하세요.");
+		} else {
+			frm.submit();
+		}
+	}
+</script>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>첨부파일 사용하는 방법</title>
+</head>
+<body>
+<!-- multiple :  하나의 첨부파일 오브젝트에 여러개의 파일을 전송하는 속성 -->
+<!-- multipart/form-data : 첨부파일을 Back-end에게 전송시 필요한 form 속성 -->
+<!-- 첨부파일 기능이 있을 경우엔 무조건 post로만 전송이 가능 -->
+<form id="frm" method="post" action="./fileupload.do" enctype="multipart/form-data">
+첨부파일 : <input type="file" name="mfile">
+<button type="button" onclick="upload()">파일 업로드</button>
+</form>
+
+<form id="f" method="post" action="./multi_file.do" enctype="multipart/form-data">
+<!--  
+첨부파일 : <input type="file" name="files"><br> 
+첨부파일 : <input type="file" name="files"><br> 
+-->
+고객명 : <input type="text" name="mname"><br>
+첨부파일 : <input type="file" name="mfiles" accept="image/*" multiple> * 최대 5개 파일을 첨부할 수 있습니다<br> 
+<button type="button" onclick="upload2()">파일 업로드</button>
+</form>
+</body>
+<script>
+function upload(){
+	frm.submit();
+}
+function upload2(){ 
+	// files(속성) : multiple 에서만 사용을 하며, 여러개를 선택시 각 배열로 구분하여 설정 = split
+	// var file = f.mfiles.files; // Form 이름을 기점으로 name값 오브젝트를 가져옴
+	var file = document.getElementsByName("mfiles")[0].files; 
+	if(file.length > 5){
+		alert("첨부파일 갯수는 최대 5개입니다.");
+	} else {
+		var w = 0;
+		var count = 0;
+		while(w < file.length){ // 첨부파일 갯수만큼 반복문을 작동시켜 파일 각각의 용량을 체크
+			var size = file[w].size;
+			// 파일 용량이 2MB 이상이면 카운트			
+			if(size > 2097152){
+				count++;
+			}
+			w++;
+		}
+		// 반복문으로 파일 각각의 사이즈를 확인 후 count가 0이 아닐 경우 경고문 출력
+		if(count != 0){
+			alert("첨부파일 용량이 2MB 이상입니다.");
+		} else{
+			f.submit();
+		}
+	}
+}
+</script>
+</html>

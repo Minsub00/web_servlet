@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>메일 보내기</title>
+</head>
+<body>
+<form id="frm" method="post" action="./mailok.do">
+<input type="text" placeholder="담당자 성함을 입력하세요." name="to_name"><br>
+<input type="text" placeholder="회신받을 메일주소를 입력하세요." name="to_mail"><br>
+<input type="text" placeholder="제목을 입력하세요." name="subject"><br>
+<textarea rows="0" cols="0" placeholder="내용을 입력하세요" name="context"></textarea><br>
+<input type="button" value="메일전송" onclick="send()">
+</form>
+</body>
+<script>
+function send(){
+	if(frm.to_name.value == ""){
+		alert("담당자 성함을 입력해주세요.");
+	} else if(frm.to_mail.value == ""){
+		alert("회신받을 메일주소를 입력해주세요.");
+	} else if(frm.subject.value == ""){
+		alert("제목을 입력해주세요.");
+	} else if(frm.context.value == ""){
+		alert("내용을 입력해주세요.");
+	} else {
+		frm.submit();
+	}
+	
+}
+</script>
+</html>
