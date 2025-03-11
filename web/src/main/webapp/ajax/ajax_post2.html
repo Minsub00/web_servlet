@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script src="../jquery/jquery.js"></script>
+<script>
+$(()=>{
+	$("#btn").click(function(){
+		if($("#mid").val() == ""){
+			alert("아이디를 입력하세요.");
+		} else if($("#memail").val == ""){
+			alert("이메일을 입력하세요.");
+		} 
+		else {
+			// ajax post 통신
+			$.ajax({
+				url : "./ajax_postok.do",
+				type : "post", // 전송방식
+				contentType : "application/x-www-form-urlencoded", // Jquery 전송 시 암호화 (기본으로 되 있음)
+				cache : false,
+				// POST 전송시 해당 방식으로 전송
+				data : {
+					"userid": $("#mid").val(),
+					"usermail" : $("#memail").val()
+				},
+				success: function(response){ // xhr : 200 통신이 발생시 작동
+					console.log(response);
+				},
+				error:function(error){ // xhr : 200 외의 숫자가 발생할 경우
+					console.log("error " + error);
+				},
+			})
+		}
+	})
+})
+</script>
+<body>
+<!-- form 통신이 아닐 경우 name 사용 X -->
+아이디 : <input type="text" id="mid">
+이메일 : <input type="text" id="memail">
+<input type="button" value="전송" id="btn">
+</body>
+</html>
